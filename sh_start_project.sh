@@ -15,17 +15,18 @@ composer dumpautoload
 php artisan key:generate
 
 ##host do windows
+host_url=laravel_shell.localhost
+echo -e "\n 127.0.0.1 $host_url" >> "C:\Windows\System32\drivers\etc\hosts"
 
 #vhosts
-host_url=laravel_shell
 project_dir="${PWD/#$HOME/C:/Users/$USERNAME}"
 apache_dir="D:\xampp\apache\conf\extra\httpd-vhosts.conf"
 # shellcheck disable=SC2089
 new_vhost="\n\n
 <VirtualHost *:80> \n
       DocumentRoot $project_dir\public' \n
-      ServerName $host_url.localhost \n
-      ServerAlias $host_url.localhost \n
+      ServerName $host_url \n
+      ServerAlias $host_url \n
       <Directory '$project_dir\public'> \n
          AllowOverride All \n
          Require all Granted \n
@@ -39,6 +40,5 @@ cd /d/xampp
 start apache_stop.bat
 start apache_start.bat
 
-echo "O projeto esta rodando em: http://$host_url.localhost"
+echo "O projeto esta rodando em: http://$host_url"
 echo "### Fim da instalação ###"
-
