@@ -6,7 +6,7 @@ echo "Verificando branch..."
 git checkout develop
 
 echo "Baixando dados do projeto..."
-git pull
+#git pull
 
 echo "Instalando dependências e inciando o projeto..."
 composer install
@@ -30,10 +30,10 @@ apache_dir="D:\xampp\apache\conf\extra\httpd-vhosts.conf"
 # shellcheck disable=SC2089
 new_vhost="\n\n
 <VirtualHost *:80> \n
-      DocumentRoot '$project_dir'\'$path_origin\public' \n
+      DocumentRoot '$project_dir/$path_origin/public' \n
       ServerName $host_url \n
       ServerAlias $host_url \n
-      <Directory '$project_dir'\'$path_origin\public'> \n
+      <Directory '$project_dir/$path_origin/public'> \n
          AllowOverride All \n
          Require all Granted \n
      </Directory> \n
