@@ -2,20 +2,26 @@
 #inciando o projeto
 echo "### Inciando o projeto ###"
 
-echo "Verificando branch"
+echo "Verificando branch..."
 git checkout develop
 
-echo "Baixando dados do projeto"
+echo "Baixando dados do projeto..."
 git pull
 
-echo "Instalando dependências e inciando o projeto"
+echo "Instalando dependências e inciando o projeto..."
 composer install
 cp .env.localhost .env
 composer dumpautoload
 php artisan key:generate
 
-##host do windows
-host_url=laravel_shell.localhost
+echo "Pegando o nome do projeto..."
+path=${PWD}
+cd ../
+path_back=${PWD}
+path_origin=${path//"$path_back/"/}
+
+#host do windows
+host_url=$path_origin.localhost
 echo -e "\n 127.0.0.1 $host_url" >> "C:\Windows\System32\drivers\etc\hosts"
 
 #vhosts
@@ -36,7 +42,7 @@ echo -e $new_vhost >>$apache_dir
 
 #reiniciando o xampp
 echo "Reiniciando o apache..."
-cd /d/xampp
+cd D:\xampp
 start apache_stop.bat
 start apache_start.bat
 
