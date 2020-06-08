@@ -2,7 +2,7 @@
 Script criado para auxiliar a criação de projetos em ambientes Windows que utilizam XAMPP, padronizando a forma de criação de vhost e hosts no windows.
 E para o dia a dia um script de atualização do projeto, executando alguns comandos necessários para o laravel.
 
-## sh_start_project
+## sh_start_project.sh
 - git chekout develop
 - composer install
 - composer dumpautoload
