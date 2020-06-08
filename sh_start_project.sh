@@ -21,7 +21,8 @@ path_back=${PWD}
 path_origin=${path//"$path_back/"/}
 
 #host do windows
-host_url=$path_origin.localhost
+host_url=${path_origin,,}
+host_url=$host_url.localhost
 echo -e "\n127.0.0.1 $host_url" >> "C:\Windows\System32\drivers\etc\hosts"
 
 #vhosts
