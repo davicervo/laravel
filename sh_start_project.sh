@@ -26,7 +26,13 @@ echo -e "\n127.0.0.1 $host_url" >> "C:\Windows\System32\drivers\etc\hosts"
 
 #vhosts
 project_dir="${PWD/#$HOME/C:/Users/$USERNAME}"
-apache_dir="D:\xampp\apache\conf\extra\httpd-vhosts.conf"
+FILE="D:\xampp\apache\conf\extra\httpd-vhosts.conf"
+if [ -f "$FILE" ]; then
+    apache_dir="D:\xampp\apache\conf\extra\httpd-vhosts.conf"
+else
+    apache_dir="C:\xampp\apache\conf\extra\httpd-vhosts.conf"
+fi
+
 # shellcheck disable=SC2089
 new_vhost="\n\n
 <VirtualHost *:80> \n
