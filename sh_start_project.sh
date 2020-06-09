@@ -32,7 +32,7 @@ echo "Baixando dados do projeto..."
 #git pull
 
 echo "Instalando dependências e inciando o projeto..."
-composer install
+composer install --dev
 cp .env.localhost .env
 composer dumpautoload
 php artisan key:generate
