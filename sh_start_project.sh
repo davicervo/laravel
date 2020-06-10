@@ -4,7 +4,7 @@ echo "### Inciando o projeto ###"
 
 #vhosts
 echo "Verificando se o Xampp e Apache estão instalados e serão encontrados."
-project_dir="${PWD/#$HOME/C:/Users/$USERNAME}"
+project_dir="${PWD/#"/c/"/$USERNAME}"
 apache_dir=""
 if [ -f "D:\xampp\apache\conf\extra\httpd-vhosts.conf" ]; then
     apache_dir="D:\xampp\apache\conf\extra\httpd-vhosts.conf"
@@ -26,18 +26,18 @@ fi
 echo "Xampp e Apache encontrados."
 
 echo "Verificando branch..."
-git checkout develop
+#git checkout develop
 
 echo "Baixando dados do projeto..."
 #git pull
 
 echo "Instalando dependências e inciando o projeto..."
-composer install --dev
-cp .env.localhost .env
-composer dumpautoload
-php artisan key:generate
-php artisan cache:clear
-php artisan route:clear
+#composer install --dev
+#cp .env.localhost .env
+#composer dumpautoload
+#php artisan key:generate
+#php artisan cache:clear
+#php artisan route:clear
 
 echo "Pegando o nome do projeto..."
 path=${PWD}
@@ -48,20 +48,28 @@ path_origin=${path//"$path_back/"/}
 #host do windows
 host_url=${path_origin,,}
 host_url=$host_url.localhost
-echo -e "\n127.0.0.1 $host_url" >> "C:\Windows\System32\drivers\etc\hosts"
+if ! grep "127.0.0.1 $host_url" "C:\Windows\System32\drivers\etc\hosts" > /dev/null
+then
+	echo -e "\n127.0.0.1 $host_url" >> "C:\Windows\System32\drivers\etc\hosts"
+fi
+
 
 # shellcheck disable=SC2089
 new_vhost="\n\n
 <VirtualHost *:80> \n
-      DocumentRoot '$project_dir/$path_origin/public' \n
+      DocumentRoot '$project_dir/public' \n
       ServerName $host_url \n
       ServerAlias $host_url \n
-      <Directory '$project_dir/$path_origin/public'> \n
+      <Directory '$project_dir/public'> \n
          AllowOverride All \n
          Require all Granted \n
      </Directory> \n
 </VirtualHost>"
-echo -e $new_vhost >>$apache_dir
+
+if ! grep $new_vhost $apache_dir > /dev/null
+then
+	echo -e $new_vhost >>$apache_dir
+fi
 
 echo "Reinicie o seu apache!"
 
