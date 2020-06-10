@@ -26,18 +26,18 @@ fi
 echo "Xampp e Apache encontrados."
 
 echo "Verificando branch..."
-#git checkout develop
+git checkout develop
 
 echo "Baixando dados do projeto..."
 #git pull
 
 echo "Instalando dependências e inciando o projeto..."
-#composer install --dev
-#cp .env.localhost .env
-#composer dumpautoload
-#php artisan key:generate
-#php artisan cache:clear
-#php artisan route:clear
+composer install --dev
+cp .env.localhost .env
+composer dumpautoload
+php artisan key:generate
+php artisan cache:clear
+php artisan route:clear
 
 echo "Pegando o nome do projeto..."
 path=${PWD}
